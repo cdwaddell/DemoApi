@@ -195,17 +195,17 @@ namespace DemoApi
                     });
                 }
 
-                //// Define the OAuth2.0 scheme that's in use (i.e. Implicit Flow)
-                //options.AddSecurityDefinition("oidc", new OAuth2Scheme
-                //{
-                //    Type = "oauth2",
-                //    Flow = "implicit",
-                //    AuthorizationUrl = Configuration["Authority"] + "/connect/authorize",
-                //    Scopes = ApiConstants.Scopes
-                //});
+                // Define the OAuth2.0 scheme that's in use (i.e. Implicit Flow)
+                options.AddSecurityDefinition("oidc", new OAuth2Scheme
+                {
+                    Type = "oauth2",
+                    Flow = "implicit",
+                    AuthorizationUrl = Configuration["Authority"] + "/connect/authorize",
+                    Scopes = ApiConstants.Scopes
+                });
 
-                //// Assign scope requirements to operations based on AuthorizeAttribute
-                //options.OperationFilter<SecurityRequirementsOperationFilter>();
+                // Assign scope requirements to operations based on AuthorizeAttribute
+                options.OperationFilter<SecurityRequirementsOperationFilter>();
 
                 //// Documentation for returning files
                 //options.OperationFilter<FileFilter>();
@@ -213,10 +213,10 @@ namespace DemoApi
                 //// Documentation for uploading files
                 //options.OperationFilter<FileUploadFilter>();
 
-                ////Setup comments based on XML data
-                //var xmlDocPath = Path.Combine(AppContext.BaseDirectory, "DemoApi.xml");
-                //options.IncludeXmlComments(xmlDocPath);
-                //options.DescribeAllEnumsAsStrings();
+                //Setup comments based on XML data
+                var xmlDocPath = Path.Combine(AppContext.BaseDirectory, "DemoApi.xml");
+                options.IncludeXmlComments(xmlDocPath);
+                options.DescribeAllEnumsAsStrings();
             });
         }
 
@@ -287,12 +287,13 @@ namespace DemoApi
                     {
                         options.SwaggerEndpoint($"/swagger/v{version}/swagger.json", version);
                     }
-                    //options.OAuthClientId("Blog Swagger");
-                    //options.OAuthClientSecret("");
-                    //options.OAuthRealm("resource");
-                    //options.OAuthAppName("Swagger Client");
-                    //options.OAuthScopeSeparator(" ");
-                    //options.OAuthUseBasicAuthenticationWithAccessCodeGrant();
+
+                    options.OAuthClientId("Blog Swagger");
+                    options.OAuthClientSecret("");
+                    options.OAuthRealm("resource");
+                    options.OAuthAppName("Swagger Client");
+                    options.OAuthScopeSeparator(" ");
+                    options.OAuthUseBasicAuthenticationWithAccessCodeGrant();
                 });
             });
 
