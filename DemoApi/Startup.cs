@@ -24,6 +24,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Swashbuckle.AspNetCore.Swagger;
@@ -91,6 +92,9 @@ namespace DemoApi
                 }
                 options.Filters.Add(typeof(ValidationActionFilterAttribute));
                 options.Filters.Add(new ProducesAttribute("application/json"));
+
+                options.OutputFormatters.Add(new CsvOutputFormatter(new CsvFormatterOptions()));
+                options.FormatterMappings.SetMediaTypeMappingForFormat("csv", MediaTypeHeaderValue.Parse("text/csv"));
 
                 var policy = new AuthorizationPolicyBuilder()
                     .RequireAuthenticatedUser()

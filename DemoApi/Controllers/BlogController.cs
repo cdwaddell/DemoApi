@@ -63,6 +63,32 @@ namespace DemoApi.Controllers
         /// </summary>
         /// <param name="blogId">The Id of the blog</param>
         /// <returns>A list of posts belinging to the blog</returns>
+        [HttpGet("{blogId:int}/Posts/CsvExport.csv")]
+        [Produces("text/csv")]
+        public async Task<IActionResult> GetPostsCsv([FromRoute]int blogId)
+        {   
+            var blogPosts = await _context.Blogs.Where(b => b.Id == blogId).GroupJoin(
+                _context.Posts,
+                b => b.Id,
+                p => p.BlogId,
+                (b, p) => new
+                {
+                    Blog = b,
+                    Posts = p
+                }
+            ).SingleOrDefaultAsync();
+
+            if (blogPosts?.Blog == null)
+                return NotFound();
+
+            return Ok(blogPosts.Posts.Select(p => new {p.AuthorSub, p.Title, p.Body}));
+        }
+        
+        /// <summary>
+        /// Get the posts belonging to a blog
+        /// </summary>
+        /// <param name="blogId">The Id of the blog</param>
+        /// <returns>A list of posts belinging to the blog</returns>
         [HttpGet("{blogId:int}/Posts")]
         [Produces(typeof(IEnumerable<PublicationViewModel>))]
         public async Task<IActionResult> GetPosts([FromRoute]int blogId)
