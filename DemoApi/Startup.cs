@@ -23,7 +23,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Swashbuckle.AspNetCore.Swagger;
 
 namespace DemoApi
 {
@@ -149,18 +148,6 @@ namespace DemoApi
                 options.EnableCaching = true;
                 options.CacheDuration = TimeSpan.FromMinutes(10); // that's the default
             });
-
-            services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc("v1.0", new Info
-                {
-                    Version = "1.0",
-                    Title = "DemoAPI 1.0",
-                    Description = "Version 1.0 of the DemoApi application"
-                });
-
-                options.DescribeAllEnumsAsStrings();
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -218,12 +205,6 @@ namespace DemoApi
                 }
 
                 builder.UseStaticFiles();
-                builder.UseSwagger();
-
-                app.UseSwaggerUI(options =>
-                {
-                    options.SwaggerEndpoint("/swagger/v1.0/swagger.json", "1.0");
-                });
             });
 
             app.UseAuthentication();
