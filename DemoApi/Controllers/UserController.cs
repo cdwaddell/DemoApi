@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 namespace DemoApi.Controllers
 {
     [Route("Users")]
+    //[ApiVersion(ApiConstants.V10)]
+    //[ApiVersion(ApiConstants.V11Beta)]
     public class UserController:Controller
     {
         private readonly DemoAppDbContext _context;

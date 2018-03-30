@@ -16,8 +16,8 @@ namespace DemoApi.Controllers
     /// Endpoints related to the root of a blog
     /// </summary>
     [Route("Blogs")]
-    [ApiVersion(ApiConstants.V10)]
-    [ApiVersion(ApiConstants.V11Beta)]
+    //[ApiVersion(ApiConstants.V10)]
+    //[ApiVersion(ApiConstants.V11Beta)]
     public class BlogAdminController : Controller
     {
         private readonly DemoAppDbContext _context;

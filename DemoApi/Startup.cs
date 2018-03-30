@@ -156,67 +156,73 @@ namespace DemoApi
 
             services.AddSwaggerGen(options =>
             {
-                options.MapType<Stream>(() => new Schema { Type = "file" });
-                options.DocInclusionPredicate((version, apiDescription) =>
+                options.SwaggerDoc("v1.0", new Info
                 {
-                    var prepend = apiDescription.RelativePath.StartsWith("/");
-
-                    if (apiDescription.ControllerAttributes()
-                            .OfType<ApiVersionAttribute>()
-                            .SelectMany(attr => attr.Versions)
-                            .All(v => $"v{v.MajorVersion}.{v.MinorVersion}{v.Status}" != version)
-                        && !apiDescription.ControllerAttributes()
-                            .OfType<ApiVersionNeutralAttribute>().Any()
-                    )
-                        return false;
-
-                    var values = apiDescription.RelativePath
-                        .Split('/')
-                        .Select(v => v.Replace("v{version}", version));
-
-                    apiDescription.RelativePath = prepend ? "/" : "" + string.Join("/", values);
-
-                    var versionParameter = apiDescription.ParameterDescriptions
-                        .SingleOrDefault(p => p.Name == "version");
-
-                    if (versionParameter != null)
-                        apiDescription.ParameterDescriptions.Remove(versionParameter);
-
-                    return true;
+                    Version = "1.0",
+                    Title = "DemoAPI 1.0",
+                    Description = "Version 1.0 of the DemoApi application"
                 });
+                //options.MapType<Stream>(() => new Schema { Type = "file" });
+                //options.DocInclusionPredicate((version, apiDescription) =>
+                //{
+                //    var prepend = apiDescription.RelativePath.StartsWith("/");
 
-                foreach (var version in ApiConstants.Versions)
-                {
-                    options.SwaggerDoc("v" + version, new Info
-                    {
-                        Version = version,
-                        Title = $"DemoApi {version}",
-                        Description = $"Version {version} of the DemoApi application."
-                    });
-                }
+                //    if (apiDescription.ControllerAttributes()
+                //            .OfType<ApiVersionAttribute>()
+                //            .SelectMany(attr => attr.Versions)
+                //            .All(v => $"v{v.MajorVersion}.{v.MinorVersion}{v.Status}" != version)
+                //        && !apiDescription.ControllerAttributes()
+                //            .OfType<ApiVersionNeutralAttribute>().Any()
+                //    )
+                //        return false;
 
-                // Define the OAuth2.0 scheme that's in use (i.e. Implicit Flow)
-                options.AddSecurityDefinition("oidc", new OAuth2Scheme
-                {
-                    Type = "oauth2",
-                    Flow = "implicit",
-                    AuthorizationUrl = Configuration["Authority"] + "/connect/authorize",
-                    Scopes = ApiConstants.Scopes
-                });
+                //    var values = apiDescription.RelativePath
+                //        .Split('/')
+                //        .Select(v => v.Replace("v{version}", version));
 
-                // Assign scope requirements to operations based on AuthorizeAttribute
-                options.OperationFilter<SecurityRequirementsOperationFilter>();
+                //    apiDescription.RelativePath = prepend ? "/" : "" + string.Join("/", values);
 
-                // Documentation for returning files
-                options.OperationFilter<FileFilter>();
+                //    var versionParameter = apiDescription.ParameterDescriptions
+                //        .SingleOrDefault(p => p.Name == "version");
 
-                // Documentation for uploading files
-                options.OperationFilter<FileUploadFilter>();
+                //    if (versionParameter != null)
+                //        apiDescription.ParameterDescriptions.Remove(versionParameter);
 
-                //Setup comments based on XML data
-                var xmlDocPath = Path.Combine(AppContext.BaseDirectory, "DemoApi.xml");
-                options.IncludeXmlComments(xmlDocPath);
-                options.DescribeAllEnumsAsStrings();
+                //    return true;
+                //});
+
+                //foreach (var version in ApiConstants.Versions)
+                //{
+                //    options.SwaggerDoc("v" + version, new Info
+                //    {
+                //        Version = version,
+                //        Title = $"DemoApi {version}",
+                //        Description = $"Version {version} of the DemoApi application."
+                //    });
+                //}
+
+                //// Define the OAuth2.0 scheme that's in use (i.e. Implicit Flow)
+                //options.AddSecurityDefinition("oidc", new OAuth2Scheme
+                //{
+                //    Type = "oauth2",
+                //    Flow = "implicit",
+                //    AuthorizationUrl = Configuration["Authority"] + "/connect/authorize",
+                //    Scopes = ApiConstants.Scopes
+                //});
+
+                //// Assign scope requirements to operations based on AuthorizeAttribute
+                //options.OperationFilter<SecurityRequirementsOperationFilter>();
+
+                //// Documentation for returning files
+                //options.OperationFilter<FileFilter>();
+
+                //// Documentation for uploading files
+                //options.OperationFilter<FileUploadFilter>();
+
+                ////Setup comments based on XML data
+                //var xmlDocPath = Path.Combine(AppContext.BaseDirectory, "DemoApi.xml");
+                //options.IncludeXmlComments(xmlDocPath);
+                //options.DescribeAllEnumsAsStrings();
             });
         }
 
@@ -279,21 +285,21 @@ namespace DemoApi
 
                 app.UseSwaggerUI(options =>
                 {
-                    options.InjectStylesheet("../../css/theme-material.css");
-                    options.InjectStylesheet("../../css/site.css");
-                    options.RoutePrefix = "swagger/ui";
+                    options.SwaggerEndpoint($"/swagger/v1.0/swagger.json", "1.0");
+                    //options.InjectStylesheet("../../css/theme-outline.css");
+                    //options.InjectStylesheet("../../css/site.css");
+                    //options.RoutePrefix = "swagger/ui";
                     
-                    foreach (var version in ApiConstants.Versions)
-                    {
-                        options.SwaggerEndpoint($"/swagger/v{version}/swagger.json", version);
-                    }
-                    options.OAuthClientId("Blog Swagger");
-                    options.OAuthClientSecret("");
-                    options.OAuthRealm("resource");
-                    options.OAuthAppName("Swagger Client");
-                    options.OAuthScopeSeparator(" ");
-                    options.OAuthAdditionalQueryStringParams(new { foo = "bar" });
-                    options.OAuthUseBasicAuthenticationWithAccessCodeGrant();
+                    //foreach (var version in ApiConstants.Versions)
+                    //{
+                    //    options.SwaggerEndpoint($"/swagger/v{version}/swagger.json", version);
+                    //}
+                    //options.OAuthClientId("Blog Swagger");
+                    //options.OAuthClientSecret("");
+                    //options.OAuthRealm("resource");
+                    //options.OAuthAppName("Swagger Client");
+                    //options.OAuthScopeSeparator(" ");
+                    //options.OAuthUseBasicAuthenticationWithAccessCodeGrant();
                 });
             });
 
