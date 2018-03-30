@@ -1,4 +1,8 @@
-﻿namespace DemoApi.Controllers
+﻿using DemoApi.Controllers;
+using DemoApi.Models.Core;
+using DemoApi.Models.Summary;
+
+namespace DemoApi.Models
 {
     public class BlogViewModel: SelfLinkViewModel
     {

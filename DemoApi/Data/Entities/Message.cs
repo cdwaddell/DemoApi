@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using DemoApi.Data.Core;
 
-namespace DemoApi.Data
+namespace DemoApi.Data.Entities
 {
     public class Message : AuditableEntity
     {

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace DemoApi
+namespace DemoApi.Swagger
 {
     public class FileUploadOperation : IOperationFilter
     {

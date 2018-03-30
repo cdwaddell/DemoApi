@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DemoApi
+namespace DemoApi.Swagger
 {
     public static class ApiConstants
     {

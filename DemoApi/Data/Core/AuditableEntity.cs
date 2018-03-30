@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DemoApi.Data
+namespace DemoApi.Data.Core
 {
     public abstract class AuditableEntity
     {

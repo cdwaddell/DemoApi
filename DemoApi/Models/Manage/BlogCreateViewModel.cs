@@ -1,4 +1,4 @@
-﻿namespace DemoApi.Controllers
+﻿namespace DemoApi.Models.Manage
 {
     public class BlogCreateViewModel
     {

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using DemoApi.Data.Core;
 using DemoApi.Data.Entities;
 using IdentityModel;
 using Microsoft.EntityFrameworkCore;

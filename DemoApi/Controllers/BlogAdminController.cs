@@ -2,7 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using DemoApi.Data;
+using DemoApi.Data.Entities;
 using DemoApi.Data.Projections;
+using DemoApi.Models;
+using DemoApi.Models.Manage;
+using DemoApi.Swagger;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

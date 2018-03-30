@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Http;
 
-namespace DemoApi
+namespace DemoApi.MVC
 {
     public static class TokenRetrieval
     {

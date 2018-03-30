@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Mvc.Routing;
 
-namespace DemoApi
+namespace DemoApi.MVC
 {
     public class PrefixedRouteConvention : IApplicationModelConvention
     {

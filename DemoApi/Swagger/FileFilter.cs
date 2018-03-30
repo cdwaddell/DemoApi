@@ -3,7 +3,7 @@ using System.Linq;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace DemoApi
+namespace DemoApi.Swagger
 {
     public class FileFilter : IOperationFilter
     {

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using DemoApi.Controllers;
+using DemoApi.Data.Entities;
+using DemoApi.Models;
+using DemoApi.Models.Summary;
 
 namespace DemoApi.Data.Projections
 {

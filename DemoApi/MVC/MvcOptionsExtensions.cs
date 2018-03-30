@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 
-namespace DemoApi
+namespace DemoApi.MVC
 {
     public static class MvcOptionsExtensions
     {
