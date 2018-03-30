@@ -1,15 +1,67 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-  </PropertyGroup>
+    <PropertyGroup>
+        <Description>Test</Description>
+        <Copyright>CD Waddell</Copyright>
+        <TargetFramework>net471</TargetFramework>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DocumentationFile>bin\Debug\$(TargetFramework)\DemoApi.xml</DocumentationFile>
+        <NoWarn>1701;1702;1705</NoWarn>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
-  </ItemGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <DocumentationFile>bin\Release\$(TargetFramework)\DemoApi.xml</DocumentationFile>
+        <NoWarn>1701;1702;1705</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="Data\Migrations\20180328031006_Initial.cs" />
+      <Compile Remove="Data\Migrations\20180328031006_Initial.Designer.cs" />
+      <Compile Remove="Data\Migrations\20180328032730_Initial.cs" />
+      <Compile Remove="Data\Migrations\20180328032730_Initial.Designer.cs" />
+      <Compile Remove="Data\Migrations\20180328032901_Initial.cs" />
+      <Compile Remove="Data\Migrations\20180328032901_Initial.Designer.cs" />
+      <Compile Remove="Migrations\20180329173840_test.cs" />
+      <Compile Remove="Migrations\20180329173840_test.Designer.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Data\Migrations\" />
+        <Folder Include="wwwroot\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="wwwroot\**\*">
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.4.0" />
+        <PackageReference Include="Microsoft.AspNetCore" Version="2.0.2" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Cors" Version="2.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="2.2.0" />
+        <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.2" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.2" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.2" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.2" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.2" />
+        <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.2" />
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="2.3.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="2.3.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="System.Configuration" />
+    </ItemGroup>
 
 </Project>
