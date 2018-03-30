@@ -279,9 +279,9 @@ namespace DemoApi
 
                 app.UseSwaggerUI(options =>
                 {
-                    //options.InjectStylesheet("../../css/theme-outline.css");
-                    //options.InjectStylesheet("../../css/site.css");
-                    //options.RoutePrefix = "swagger/ui";
+                    options.InjectStylesheet("../../css/theme-outline.css");
+                    options.InjectStylesheet("../../css/site.css");
+                    options.RoutePrefix = "swagger/ui";
 
                     foreach (var version in ApiConstants.Versions)
                     {
