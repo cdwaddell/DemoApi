@@ -5,7 +5,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace DemoApi.Swagger
 {
-    public class FileUploadOperation : IOperationFilter
+    public class FileUploadFilter : IOperationFilter
     {
         public void Apply(Operation operation, OperationFilterContext context)
         {

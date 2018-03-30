@@ -206,8 +206,12 @@ namespace DemoApi
 
                 // Assign scope requirements to operations based on AuthorizeAttribute
                 options.OperationFilter<SecurityRequirementsOperationFilter>();
+
+                // Documentation for returning files
                 options.OperationFilter<FileFilter>();
-                options.OperationFilter<FileUploadOperation>();
+
+                // Documentation for uploading files
+                options.OperationFilter<FileUploadFilter>();
 
                 //Setup comments based on XML data
                 var xmlDocPath = Path.Combine(AppContext.BaseDirectory, "DemoApi.xml");
