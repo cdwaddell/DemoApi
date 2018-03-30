@@ -156,50 +156,44 @@ namespace DemoApi
 
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1.0", new Info
-                {
-                    Version = "1.0",
-                    Title = "DemoAPI 1.0",
-                    Description = "Version 1.0 of the DemoApi application"
-                });
                 //options.MapType<Stream>(() => new Schema { Type = "file" });
-                //options.DocInclusionPredicate((version, apiDescription) =>
-                //{
-                //    var prepend = apiDescription.RelativePath.StartsWith("/");
+                options.DocInclusionPredicate((version, apiDescription) =>
+                {
+                    var prepend = apiDescription.RelativePath.StartsWith("/");
 
-                //    if (apiDescription.ControllerAttributes()
-                //            .OfType<ApiVersionAttribute>()
-                //            .SelectMany(attr => attr.Versions)
-                //            .All(v => $"v{v.MajorVersion}.{v.MinorVersion}{v.Status}" != version)
-                //        && !apiDescription.ControllerAttributes()
-                //            .OfType<ApiVersionNeutralAttribute>().Any()
-                //    )
-                //        return false;
+                    if (apiDescription.ControllerAttributes()
+                            .OfType<ApiVersionAttribute>()
+                            .SelectMany(attr => attr.Versions)
+                            .All(v => $"v{v.MajorVersion}.{v.MinorVersion}{v.Status}" != version)
+                        && !apiDescription.ControllerAttributes()
+                            .OfType<ApiVersionNeutralAttribute>().Any()
+                    )
+                        return false;
 
-                //    var values = apiDescription.RelativePath
-                //        .Split('/')
-                //        .Select(v => v.Replace("v{version}", version));
+                    var values = apiDescription.RelativePath
+                        .Split('/')
+                        .Select(v => v.Replace("v{version}", version));
 
-                //    apiDescription.RelativePath = prepend ? "/" : "" + string.Join("/", values);
+                    apiDescription.RelativePath = prepend ? "/" : "" + string.Join("/", values);
 
-                //    var versionParameter = apiDescription.ParameterDescriptions
-                //        .SingleOrDefault(p => p.Name == "version");
+                    var versionParameter = apiDescription.ParameterDescriptions
+                        .SingleOrDefault(p => p.Name == "version");
 
-                //    if (versionParameter != null)
-                //        apiDescription.ParameterDescriptions.Remove(versionParameter);
+                    if (versionParameter != null)
+                        apiDescription.ParameterDescriptions.Remove(versionParameter);
 
-                //    return true;
-                //});
+                    return true;
+                });
 
-                //foreach (var version in ApiConstants.Versions)
-                //{
-                //    options.SwaggerDoc("v" + version, new Info
-                //    {
-                //        Version = version,
-                //        Title = $"DemoApi {version}",
-                //        Description = $"Version {version} of the DemoApi application."
-                //    });
-                //}
+                foreach (var version in ApiConstants.Versions)
+                {
+                    options.SwaggerDoc("v" + version, new Info
+                    {
+                        Version = version,
+                        Title = $"DemoApi {version}",
+                        Description = $"Version {version} of the DemoApi application."
+                    });
+                }
 
                 //// Define the OAuth2.0 scheme that's in use (i.e. Implicit Flow)
                 //options.AddSecurityDefinition("oidc", new OAuth2Scheme
@@ -285,15 +279,14 @@ namespace DemoApi
 
                 app.UseSwaggerUI(options =>
                 {
-                    options.SwaggerEndpoint($"/swagger/v1.0/swagger.json", "1.0");
                     //options.InjectStylesheet("../../css/theme-outline.css");
                     //options.InjectStylesheet("../../css/site.css");
                     //options.RoutePrefix = "swagger/ui";
-                    
-                    //foreach (var version in ApiConstants.Versions)
-                    //{
-                    //    options.SwaggerEndpoint($"/swagger/v{version}/swagger.json", version);
-                    //}
+
+                    foreach (var version in ApiConstants.Versions)
+                    {
+                        options.SwaggerEndpoint($"/swagger/v{version}/swagger.json", version);
+                    }
                     //options.OAuthClientId("Blog Swagger");
                     //options.OAuthClientSecret("");
                     //options.OAuthRealm("resource");

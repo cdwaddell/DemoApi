@@ -15,8 +15,8 @@ using File = DemoApi.Data.Entities.File;
 namespace DemoApi.Controllers
 {
     [Route("Users/{sub}/Files")]
-    //[ApiVersion(ApiConstants.V10)]
-    //[ApiVersion(ApiConstants.V11Beta)]
+    [ApiVersion(ApiConstants.V10)]
+    [ApiVersion(ApiConstants.V11Beta)]
     public class FileController: Controller
     {
         private readonly DemoAppDbContext _context;

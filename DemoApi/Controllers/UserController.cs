@@ -3,14 +3,15 @@ using System.Threading.Tasks;
 using DemoApi.Data;
 using DemoApi.Models;
 using DemoApi.Models.Manage;
+using DemoApi.Swagger;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DemoApi.Controllers
 {
     [Route("Users")]
-    //[ApiVersion(ApiConstants.V10)]
-    //[ApiVersion(ApiConstants.V11Beta)]
+    [ApiVersion(ApiConstants.V10)]
+    [ApiVersion(ApiConstants.V11Beta)]
     public class UserController:Controller
     {
         private readonly DemoAppDbContext _context;
