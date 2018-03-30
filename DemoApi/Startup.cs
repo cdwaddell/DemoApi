@@ -1,9 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Security.Claims;
-using DemoApi.Controllers;
 using DemoApi.Data;
 using DemoApi.Data.Entities;
 using DemoApi.Models.Core;
@@ -195,28 +192,7 @@ namespace DemoApi
                     });
                 }
 
-                //// Define the OAuth2.0 scheme that's in use (i.e. Implicit Flow)
-                //options.AddSecurityDefinition("oidc", new OAuth2Scheme
-                //{
-                //    Type = "oauth2",
-                //    Flow = "implicit",
-                //    AuthorizationUrl = Configuration["Authority"] + "/connect/authorize",
-                //    Scopes = ApiConstants.Scopes
-                //});
-
-                //// Assign scope requirements to operations based on AuthorizeAttribute
-                //options.OperationFilter<SecurityRequirementsOperationFilter>();
-
-                //// Documentation for returning files
-                //options.OperationFilter<FileFilter>();
-
-                //// Documentation for uploading files
-                //options.OperationFilter<FileUploadFilter>();
-
-                ////Setup comments based on XML data
-                //var xmlDocPath = Path.Combine(AppContext.BaseDirectory, "DemoApi.xml");
-                //options.IncludeXmlComments(xmlDocPath);
-                //options.DescribeAllEnumsAsStrings();
+                options.DescribeAllEnumsAsStrings();
             });
         }
 
@@ -279,20 +255,10 @@ namespace DemoApi
 
                 app.UseSwaggerUI(options =>
                 {
-                    //options.InjectStylesheet("../../css/theme-outline.css");
-                    //options.InjectStylesheet("../../css/site.css");
-                    //options.RoutePrefix = "swagger/ui";
-
                     foreach (var version in ApiConstants.Versions)
                     {
                         options.SwaggerEndpoint($"/swagger/v{version}/swagger.json", version);
                     }
-                    //options.OAuthClientId("Blog Swagger");
-                    //options.OAuthClientSecret("");
-                    //options.OAuthRealm("resource");
-                    //options.OAuthAppName("Swagger Client");
-                    //options.OAuthScopeSeparator(" ");
-                    //options.OAuthUseBasicAuthenticationWithAccessCodeGrant();
                 });
             });
 
