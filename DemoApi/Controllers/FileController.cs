@@ -6,7 +6,6 @@ using DemoApi.Data;
 using DemoApi.Data.Projections;
 using DemoApi.Models;
 using DemoApi.Models.Manage;
-using DemoApi.Swagger;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,8 +14,6 @@ using File = DemoApi.Data.Entities.File;
 namespace DemoApi.Controllers
 {
     [Route("Users/{sub}/Files")]
-    //[ApiVersion(ApiConstants.V10)]
-    //[ApiVersion(ApiConstants.V11Beta)]
     public class FileController: Controller
     {
         private readonly DemoAppDbContext _context;

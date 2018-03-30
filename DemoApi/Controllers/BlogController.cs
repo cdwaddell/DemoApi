@@ -6,7 +6,6 @@ using DemoApi.Data.Entities;
 using DemoApi.Data.Projections;
 using DemoApi.Models;
 using DemoApi.Models.Manage;
-using DemoApi.Swagger;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,8 +15,6 @@ namespace DemoApi.Controllers
     /// Endpoints related to the root of a blog
     /// </summary>
     [Route("Blogs")]
-    //[ApiVersion(ApiConstants.V10)]
-    //[ApiVersion(ApiConstants.V11Beta)]
     public class BlogController: Controller
     {
         private readonly DemoAppDbContext _context;
