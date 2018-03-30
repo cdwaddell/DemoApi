@@ -265,6 +265,7 @@ namespace DemoApi
 
                 app.UseSwaggerUI(options =>
                 {
+                    options.RoutePrefix = "swagger/ui";
                     foreach (var version in ApiConstants.Versions)
                     {
                         options.SwaggerEndpoint($"/swagger/v{version}/swagger.json", version);
