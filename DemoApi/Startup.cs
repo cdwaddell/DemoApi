@@ -1,9 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Security.Claims;
-using DemoApi.Controllers;
 using DemoApi.Data;
 using DemoApi.Data.Entities;
 using DemoApi.Models.Core;
@@ -27,7 +24,6 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Swashbuckle.AspNetCore.Swagger;
-using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace DemoApi
 {
@@ -162,6 +158,8 @@ namespace DemoApi
                     Title = "DemoAPI 1.0",
                     Description = "Version 1.0 of the DemoApi application"
                 });
+
+                options.DescribeAllEnumsAsStrings();
             });
         }
 
